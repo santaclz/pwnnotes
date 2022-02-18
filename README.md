@@ -2,6 +2,7 @@
 ```c
 scanf("%lf", &n); // passing non number(. or -) yields to keeping the value stored in n
 		  // [!] useful for bypassing stack canaries
+
 for(i=0; i<n; i++) {
 	scanf("%lf", &arr[i]); // %lf -> stack canary can be bypassed
 	scanf("%d", &arr[i]);  // %d -> passing . or - terminates every scanf after
