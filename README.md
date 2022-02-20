@@ -70,6 +70,12 @@ Leak more libc functions.
 Use one_gadget https://github.com/david942j/one_gadget
 to overwrite whatever address you can control execution with
 
+# Other arch
+## ARM
+Getting started: https://azeria-labs.com/arm-lab-vm/
+
+Currently `ROPgadget` has stronger gadget detection than `ropper` when it comes to ARM architecture
+
 # More tips
 https://ropemporium.com/guide.html
 
