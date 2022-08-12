@@ -76,6 +76,15 @@ Getting started: https://azeria-labs.com/arm-lab-vm/
 
 Currently `ROPgadget` has stronger gadget detection than `ropper` when it comes to ARM architecture
 
+# Adding symbols to stripped binary
+```
+objcopy ./example --add-symbol main=.text:0xe2,function,global ./example-with-symbols
+```
+Where `0xe2` is offset of `main` from `.text` section.
+The `--add-symbol` option may be specified multiple times.
+
+https://naliferopoulos.github.io/ThinkingInBinary/symbolicating-stripped-elf-files-manually
+
 # More tips
 https://ropemporium.com/guide.html
 
