@@ -18,7 +18,20 @@ printf("%100000c"); // triggers malloc
 # GDB/pwndbg/pwntools tricks
 ### Pwndbg print whole stack
 ```
+stack
 telescope ($rbp-$rsp)/8+1
+```
+### Print value
+```
+p user
+```
+### Print type/struct info
+```
+ptype user
+```
+### Print code around crash (or rip)
+```
+context code
 ```
 ### Running with custom libc without custom linker
 If running from pwntools script setting LD_PRELOAD usually works
@@ -48,6 +61,11 @@ https://docs.pwntools.com/en/stable/fmtstr.html
 ```python3
 fmtstr_payload(8, {__malloc_hook : one_gadget}, write_size="byte")
 ```
+### Find candidates for fake fastbin chunks
+```
+find_fake_fast addr
+```
+Where addr is the address of value to overlap.
 
 # Leaking libc
 This ropchain prints newline and then leaks address of puts from libc. The libc offset is then easily calculated by substracting puts offset from leaked address.
@@ -69,6 +87,12 @@ Leak more libc functions.
 ### No shellcode, no ropchain? No problem
 Use one_gadget https://github.com/david942j/one_gadget
 to overwrite whatever address you can control execution with
+
+# Glibc techniques summary
+## House of Force
+Overwrite `top_chunk` size and wrap around address space to control where the next chunk is allocated.
+## Fastbin dup
+Perform double free -> control the fd pointer in the last fastbin -> malloc returns address in fd pointer.
 
 # Other arch
 ## ARM
