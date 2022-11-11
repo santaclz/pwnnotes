@@ -67,6 +67,12 @@ find_fake_fast addr
 ```
 Where addr is the address of value to overlap.
 
+### Buffering is wired while developing exploit?
+```
+context.log_level = 'debug'
+```
+I don't know how or why but it fixed pwntools halting on `recvuntil(b'keyword)`
+
 # Leaking libc
 This ropchain prints newline and then leaks address of puts from libc. The libc offset is then easily calculated by substracting puts offset from leaked address.
 ```python3
