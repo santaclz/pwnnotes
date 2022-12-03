@@ -90,6 +90,8 @@ Leak any libc function from .got table and check with https://libc.blukat.me/
 
 Still not sure?
 Leak more libc functions.
+### Libc is shipped without symbols?
+You can download version with symbols from https://launchpad.net/ubuntu/xenial/<libc_version> (ex. https://launchpad.net/ubuntu/xenial/amd64/libc6-dbg/2.23-0ubuntu5). Debug file to download is in format `libc6-dbg_<libc_version>.deb`. Then you can use tool eu-unstrip or extract the deb and replace challenge libc with libc with symbols.
 ### No shellcode, no ropchain? No problem
 Use one_gadget https://github.com/david942j/one_gadget
 to overwrite whatever address you can control execution with
