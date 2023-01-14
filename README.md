@@ -66,7 +66,11 @@ fmtstr_payload(8, {__malloc_hook : one_gadget}, write_size="byte")
 find_fake_fast addr
 ```
 Where addr is the address of value to overlap.
-
+### Parse memory as malloc chunk
+```
+malloc_chunk addr
+```
+Where addr is the address of chunk + 16 (without metadata).
 ### Buffering is wired while developing exploit?
 ```
 context.log_level = 'debug'
