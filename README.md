@@ -72,7 +72,7 @@ Where addr is the address of value to overlap.
 ```
 malloc_chunk addr
 ```
-Where addr is the address of chunk + 16 (without metadata).
+Where addr is the address of chunk.
 ### Call another function from within GDB
 ```
 call function()
@@ -100,6 +100,11 @@ buf += p64(elf.symbols["puts"])
 buf += p64(0x000000000040063e) 		# ret; 
 buf += p64(elf.symbols["fill"]) 	# call fill() (vulnerable function) for second stage
 ```
+### Leak libc via unsorted bin
+1. Craft a chunk of size 0x91 or bigger.
+2. Make sure only PREV_INUSE flag is set.
+3. Make sure the next chunk also has PREV_INUSE flag set.
+4. Free the first chunk into unsorted bin.
 ### Not sure which libc version is on remote system?
 Leak any libc function from .got table and check with https://libc.blukat.me/
 
