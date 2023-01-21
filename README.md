@@ -121,6 +121,8 @@ to overwrite whatever address you can control execution with
 Overwrite `top_chunk` size and wrap around address space to control where the next chunk is allocated.
 ## Fastbin dup
 Perform double free -> control the fd pointer in the last fastbin -> malloc returns address in fd pointer.
+## House of Spirit
+Craft fake chunk -> overwrite the pointer to free -> overwrite fd pointer -> malloc -> malloc -> write data.
 
 # Other arch
 ## ARM
