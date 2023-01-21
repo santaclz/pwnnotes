@@ -55,6 +55,8 @@ If the binary crashes in `__libc_start_main` before `call rax` you can break bef
 b *__libc_start_main+391
 set $rax = main
 ```
+### Debugging memory corruption
+When getting `malloc.c no such file or directory` you can download corresponding malloc.c file from glibc source code and put it in the same directory. That way when you trigger security mitigation in malloc or free you can inspect the source code with `context code`. And dont forget to switch to the right frame before with `f <number>`.
 ### Tired of writing format string exploits?
 Pwntools offers less painful alternative :)
 https://docs.pwntools.com/en/stable/fmtstr.html
@@ -71,11 +73,20 @@ Where addr is the address of value to overlap.
 malloc_chunk addr
 ```
 Where addr is the address of chunk + 16 (without metadata).
+### Call another function from within GDB
+```
+call function()
+```
+Calls the function from gdb.
+```
+print function()
+```
+Calls the function from gdb and prints the return value.
 ### Buffering is wired while developing exploit?
 ```
 context.log_level = 'debug'
 ```
-I don't know how or why but it fixed pwntools halting on `recvuntil(b'keyword)`
+I don't know how or why but it fixed pwntools halting on `recvuntil(b"keyword")`
 
 # Leaking libc
 This ropchain prints newline and then leaks address of puts from libc. The libc offset is then easily calculated by substracting puts offset from leaked address.
