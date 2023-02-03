@@ -143,7 +143,7 @@ gef-remote --qemu-user --qemu-binary ./ret2win_armv5 localhost 1234
 ```
 
 ### Pwntools script setup
-```
+```python
 from pwn import *
 
 context.arch = "arm"
