@@ -160,6 +160,8 @@ gdb.attach(io, gdbscript=gs)
 ```
 
 # Adding symbols to stripped binary
+
+### Manually
 ```
 objcopy ./example --add-symbol main=.text:0xe2,function,global ./example-with-symbols
 ```
@@ -168,7 +170,13 @@ The `--add-symbol` option may be specified multiple times.
 
 https://naliferopoulos.github.io/ThinkingInBinary/symbolicating-stripped-elf-files-manually
 
+### Export binary with symbols from ghidra
+Add the following scripts into `Script Manager`.
+https://github.com/nick0ve/syms2elf
+
 # More tips
 https://ropemporium.com/guide.html
 
 https://github.com/Naetw/CTF-pwn-tips
+
+https://fibonhack.it/resources/pwn
