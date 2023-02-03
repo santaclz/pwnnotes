@@ -172,6 +172,7 @@ https://naliferopoulos.github.io/ThinkingInBinary/symbolicating-stripped-elf-fil
 
 ### Export binary with symbols from ghidra
 Add the following scripts into `Script Manager`.
+
 https://github.com/nick0ve/syms2elf
 
 # More tips
