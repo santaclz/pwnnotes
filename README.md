@@ -130,7 +130,7 @@ Getting started: https://azeria-labs.com/arm-lab-vm/
 
 Currently `ROPgadget` has stronger gadget detection than `ropper` when it comes to ARM architecture
 
-Debugging ARM on x86 host.
+### Debugging ARM on x86 host.
 
 Running the binary.
 ```
@@ -140,6 +140,23 @@ Attaching to qemu with gdb-multiarch.
 ```
 gdb-multiarch -q
 gef-remote --qemu-user --qemu-binary ./ret2win_armv5 localhost 1234
+```
+
+### Pwntools script setup
+```
+from pwn import *
+
+context.arch = "arm"
+
+elf = ELF("./ret2win_armv5")
+
+gs = """
+gef-remote --qemu-user --qemu-binary ./ret2win_armv5 localhost 1234
+""" + "file " + elf.path
+
+io = process(["qemu-arm","-g","1234", elf.path])
+gdb.attach(io, gdbscript=gs)
+...
 ```
 
 # Adding symbols to stripped binary
