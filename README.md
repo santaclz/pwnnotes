@@ -13,6 +13,12 @@ printf("hello\x00there"); // prints "hello"
 			  // [!] something to keep in mind while exploiting format strings
 
 printf("%100000c"); // triggers malloc
+
+// printf can return -1 if an encoding error occurs
+printf("%C", 'ͳʹ); // -1
+printf("%c", 'ͳʹ); // PRINT
+printf("%S", "ͳ ans T"); // -1
+printf("%s", "ͳ and T"); // PRINT
 ```
 
 # GDB/pwndbg/pwntools tricks
