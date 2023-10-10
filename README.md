@@ -181,6 +181,27 @@ Add the following scripts into `Script Manager`.
 
 https://github.com/nick0ve/syms2elf
 
+# Emulating x86_64 on macOS M1/M2
+I'm using pwndocker with rosetta emulation
+
+Run binary in one terminal with rosetta gdb server
+```
+ROSETTA_DEBUGSERVER_PORT=1234 ./pwnme
+```
+
+and on the other terminal start plain gdb or with gef extension and connect manually (pwndbg crashes)
+```
+(gdb) set architecture i386:x86-64
+(gdb) file pwnme
+(gdb) target remote localhost:1234
+(gdb) continue
+```
+
+CREDIT: https://sporks.space/2023/04/12/debugging-an-x86-application-in-rosetta-for-linux/
+
+currently vmmap on gef gets confused
+any improvement to this setup is welcome <3
+
 # More tips
 https://ropemporium.com/guide.html
 
